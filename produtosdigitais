@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluções Tecnológicas - Fernanda Ferreira</title>
+  
+  <style>
+    :root {
+      --ln-bg-card: #06101e;
+      --ln-neon-cyan: #00f2fe;
+      --ln-neon-green: #4facfe;
+      --ln-text-main: #ffffff;
+      --ln-text-desc: #a0aec0;
+      --ln-border-glow: rgba(0, 242, 254, 0.15);
+    }
+
+    .ln-store-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      box-sizing: border-box;
+    }
+
+    .ln-header-title {
+      text-align: center;
+      font-size: 22pt;
+      font-weight: bold;
+      color: #000000;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    /* ARQUITETURA DE GRID CORRIGIDA */
+    .ln-grid {
+      display: grid;
+      /* Força exatamente 3 colunas no Desktop */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      justify-items: center;
+      align-items: stretch;
+    }
+
+    .ln-card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: var(--ln-bg-card);
+      border: 1px solid var(--ln-border-glow);
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .ln-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 242, 254, 0.25);
+      border-color: var(--ln-neon-cyan);
+    }
+
+    .ln-icon-box {
+      margin-bottom: 15px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ln-icon-box svg {
+      width: 45px;
+      height: 45px;
+      stroke: var(--ln-neon-cyan);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .ln-card-title {
+      color: var(--ln-text-main);
+      font-size: 13pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ln-card-subtitle {
+      color: var(--ln-neon-green);
+      font-size: 10pt;
+      margin-bottom: 15px;
+      font-weight: normal;
+      min-height: 16px;
+    }
+
+    .ln-card-description {
+      color: var(--ln-text-desc);
+      font-size: 9.5pt;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .ln-price-container {
+      display: block;
+      margin-top: auto;
+    }
+
+    .ln-btn-price {
+      display: inline-block;
+      width: 46%;
+      margin: 0 2%;
+      border: 1px solid var(--ln-neon-green);
+      background: transparent;
+      border-radius: 6px;
+      padding: 10px 4px;
+      color: var(--ln-text-main);
+      text-decoration: none;
+      font-size: 9pt;
+      font-weight: bold;
+      transition: background 0.2s ease, border-color 0.2s ease;
+      box-sizing: border-box;
+      vertical-align: middle;
+    }
+
+    .ln-btn-price span {
+      display: block;
+      font-size: 6.5pt;
+      color: var(--ln-neon-cyan);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: normal;
+    }
+
+    .ln-btn-price:hover {
+      background: rgba(79, 172, 254, 0.15);
+      border-color: var(--ln-neon-cyan);
+    }
+
+    .ln-btn-single {
+      width: 96%;
+      margin: 0 auto;
+    }
+
+    /* RESPONSIVIDADE PARALELA DE ACORDO COM AS SOLICITAÇÕES */
+    @media (max-width: 992px) {
+      .ln-grid {
+        grid-template-columns: repeat(2, 1fr); /* Ajuste intermediário para tablets */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ln-grid {
+        grid-template-columns: repeat(2, 1fr); /* Força 2 colunas lado a lado no Mobile */
+        gap: 12px; /* Reduz o espaçamento para otimizar tela do celular */
+      }
+
+      .ln-store-container {
+        padding: 8px;
+      }
+
+      .ln-card {
+        padding: 15px 10px; /* Padding interno menor para dar espaço aos dados */
+        border-radius: 8px;
+      }
+
+      .ln-icon-box {
+        margin-bottom: 10px;
+        height: 35px;
+      }
+
+      .ln-icon-box svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .ln-card-title {
+        font-size: 9.5pt; /* Escaneabilidade precisa para o grid duplo */
+        min-height: 32px;
+        margin-bottom: 4px;
+      }
+
+      .ln-card-subtitle {
+        font-size: 8pt;
+        margin-bottom: 10px;
+        min-height: 24px;
+      }
+
+      .ln-card-description {
+        font-size: 8pt;
+        margin-bottom: 15px;
+        line-height: 1.3;
+      }
+
+      .ln-btn-price {
+        width: 100%; /* Botões empilham dentro do card pequeno para não quebrar texto */
+        margin: 4px 0;
+        padding: 6px 2px;
+        font-size: 8pt;
+      }
+
+      .ln-btn-price span {
+        font-size: 6pt;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ln-store-container">
+    <h1 class="ln-header-title">Soluções Tecnológicas - Fernanda Ferreira</h1>
+    
+    <div class="ln-grid">
+
+      <!-- CARD 1 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 17V11M11 17V7M15 17v-6M19 17V9"/></svg>
+        </div>
+        <div class="ln-card-title">Dashboards Interativos</div>
+        <div class="ln-card-subtitle">(Looker Studio/Power BI)</div>
+        <div class="ln-card-description">Painéis de dados logísticos personalizados. Transforme CSV em insights.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 1.000</a>
+          <a href="#" class="ln-btn-price"><span>Anual</span>R$ 10.000</a>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M3 15h18"/></svg>
+        </div>
+        <div class="ln-card-title">Planilhas Inteligentes</div>
+        <div class="ln-card-subtitle">(Google Sheets/Excel)</div>
+        <div class="ln-card-description">Automação e análises avançadas com IA Gemini integrada.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 300</a>
+          <a href="#" class="ln-btn-price"><span>Anual</span>R$ 3.000</a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 14h6"/></svg>
+        </div>
+        <div class="ln-card-title">Chatbot Personalizado</div>
+        <div class="ln-card-subtitle">(ZAP + IA GEMINI)</div>
+        <div class="ln-card-description">IA treinada com suas regras de negócio. Integração via API.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price"><span>Setup</span>R$ 3.000</a>
+          <a href="#" class="ln-btn-price"><span>Manut.</span>R$ 300</a>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1M18 8h5v8h-5zM8 12h8"/></svg>
+        </div>
+        <div class="ln-card-title">Integração de APIs e Sistemas</div>
+        <div class="ln-card-subtitle">&nbsp;</div>
+        <div class="ln-card-description">Conecte sua IA, Sheets ou Dashboard ao WhatsApp e sistemas core.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price ln-btn-single"><span>Projeto</span>R$ 5.000</a>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="ln-card-title">Robôs Traders Automatizados</div>
+        <div class="ln-card-subtitle">&nbsp;</div>
+        <div class="ln-card-description">Sistemas automáticos para trading baseados em algoritmos robustos e IA.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price"><span>Licença</span>R$ 2.000</a>
+          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 200</a>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="ln-card">
+        <div class="ln-icon-box">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
+        </div>
+        <div class="ln-card-title">Criação de Sites & Landing Pages</div>
+        <div class="ln-card-subtitle">(WordPress/Blogger)</div>
+        <div class="ln-card-description">Presença online profissional, com código limpo e otimizada para SEO.</div>
+        <div class="ln-price-container">
+          <a href="#" class="ln-btn-price ln-btn-single"><span>Projeto</span>R$ 4.000</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
