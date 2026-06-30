@@ -1,326 +1,359 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soluções Tecnológicas - Fernanda Ferreira</title>
-  
-  <style>
-    :root {
-      --ln-bg-card: #06101e;
-      --ln-neon-cyan: #00f2fe;
-      --ln-neon-green: #4facfe;
-      --ln-text-main: #ffffff;
-      --ln-text-desc: #a0aec0;
-      --ln-border-glow: rgba(0, 242, 254, 0.15);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluções Tecnológicas - Fernanda Ferreira</title>
+    <style>
+        /* ==========================================================================
+           RESET & VARIÁVEIS GLOBAIS (Otimização de Performance e Renderização)
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .ln-store-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      font-family: 'Arial', sans-serif;
-      box-sizing: border-box;
-    }
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #03131e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
 
-    .ln-header-title {
-      text-align: center;
-      font-size: 22pt;
-      font-weight: bold;
-      color: #000000;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-      letter-spacing: 1px;
-      line-height: 1.2;
-    }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: #333333;
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
 
-    /* ARQUITETURA DE GRID RESPONSIVA CORRIGIDA */
-    .ln-grid {
-      display: grid;
-      /* Inicialização Mobile-First: 1 Coluna Padrão para evitar sobreposição */
-      grid-template-columns: 1fr;
-      gap: 25px;
-      justify-items: center;
-      align-items: stretch;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .ln-card {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      background-color: var(--ln-bg-card);
-      border: 1px solid var(--ln-border-glow);
-      border-radius: 12px;
-      padding: 25px 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      box-sizing: border-box;
-    }
+        .header-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            color: #000000;
+        }
 
-    .ln-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 242, 254, 0.25);
-      border-color: var(--ln-neon-cyan);
-    }
+        /* ==========================================================================
+           GRID RESPONSIVO (Layout Híbrido Adaptativo - Sem Dependência de Frameworks)
+           ========================================================================== */
+        .grid-container {
+            display: block;
+        }
 
-    .ln-icon-box {
-      margin-bottom: 15px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .grid-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 24px;
+            margin-bottom: -24px;
+        }
 
-    .ln-icon-box svg {
-      width: 45px;
-      height: 45px;
-      stroke: var(--ln-neon-cyan);
-      fill: none;
-      stroke-width: 1.5;
-    }
+        .grid-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding-bottom: 24px;
+        }
 
-    .ln-card-title {
-      color: var(--ln-text-main);
-      font-size: 13pt;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        /* ==========================================================================
+           ESTILIZAÇÃO DOS CARDS (Identidade Visual Premium / High-Ticket)
+           ========================================================================== */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 35px 24px 110px 24px; /* Padding inferior estendido para o container de preço */
+            text-align: center;
+            min-height: 440px;
+            position: relative;
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
 
-    .ln-card-subtitle {
-      color: var(--ln-neon-green);
-      font-size: 10pt;
-      margin-bottom: 15px;
-      font-weight: normal;
-      min-height: 16px;
-    }
+        .icon-container {
+            margin-bottom: 22px;
+            height: 64px;
+            display: block;
+        }
 
-    .ln-card-description {
-      color: var(--ln-text-desc);
-      font-size: 9.5pt;
-      line-height: 1.5;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
+        .icon-svg {
+            height: 100%;
+            max-width: 64px;
+        }
 
-    .ln-price-container {
-      display: block;
-      margin-top: auto;
-    }
+        .card-title {
+            color: var(--text-primary);
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
 
-    .ln-btn-price {
-      display: inline-block;
-      width: 46%;
-      margin: 0 2%;
-      border: 1px solid var(--ln-neon-green);
-      background: transparent;
-      border-radius: 6px;
-      padding: 10px 4px;
-      color: var(--ln-text-main);
-      text-decoration: none;
-      font-size: 9pt;
-      font-weight: bold;
-      transition: background 0.2s ease, border-color 0.2s ease;
-      box-sizing: border-box;
-      vertical-align: middle;
-    }
+        .card-subtitle {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
 
-    .ln-btn-price span {
-      display: block;
-      font-size: 6.5pt;
-      color: var(--ln-neon-cyan);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      font-weight: normal;
-    }
+        .card-description {
+            color: #e2e8f0;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-    .ln-btn-price:hover {
-      background: rgba(79, 172, 254, 0.15);
-      border-color: var(--ln-neon-cyan);
-    }
+        /* ==========================================================================
+           BLOCO DE PRECIFICAÇÃO E ALINHAMENTO DE CONVERSÃO
+           ========================================================================== */
+        .pricing-container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 12px 0;
+            position: absolute;
+            bottom: 35px;
+            left: 0;
+            padding: 0 24px;
+        }
 
-    .ln-btn-single {
-      width: 96%;
-      margin: 0 auto;
-    }
+        .price-box {
+            display: table-cell;
+            border: 1.5px solid #1a365d;
+            border-radius: 6px;
+            padding: 10px 4px;
+            text-align: center;
+            text-decoration: none;
+            background: transparent;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
 
-    /* MEDIA QUERIES: GESTÃO ADAPTATIVA DE TELAS */
-    
-    /* Dispositivos Intermediários (Tablets / Telas de até 992px) */
-    @media (min-width: 601px) and (max-width: 992px) {
-      .ln-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+        .price-box:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.04);
+        }
 
-    /* Computadores e Desktops (Telas acima de 992px) */
-    @media (min-width: 993px) {
-      .ln-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
+        .price-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
 
-    /* Celulares e Smartphones (Abaixo de 600px) - Correção de Estabilidade */
-    @media (max-width: 600px) {
-      .ln-grid {
-        grid-template-columns: 1fr; /* 1 card por linha resolve o conflito visual */
-        gap: 20px; 
-      }
+        .price-value {
+            display: block;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 700;
+        }
 
-      .ln-store-container {
-        padding: 12px;
-      }
+        /* Modificador para Cards com opção única de Preço */
+        .price-box.single {
+            width: 100%;
+        }
 
-      .ln-card {
-        padding: 20px 15px; 
-        border-radius: 10px;
-      }
-
-      .ln-icon-box {
-        margin-bottom: 12px;
-        height: 40px;
-      }
-
-      .ln-icon-box svg {
-        width: 36px;
-        height: 36px;
-      }
-
-      .ln-card-title {
-        font-size: 11pt; 
-        min-height: auto;
-        margin-bottom: 6px;
-      }
-
-      .ln-card-subtitle {
-        font-size: 9pt;
-        margin-bottom: 12px;
-        min-height: auto;
-      }
-
-      .ln-card-description {
-        font-size: 9pt;
-        margin-bottom: 18px;
-        line-height: 1.4;
-      }
-
-      .ln-btn-price {
-        width: 46%; /* Mantém os dois botões organizados lado a lado sem quebra de string */
-        margin: 0 2%;
-        padding: 8px 4px;
-        font-size: 8.5pt;
-      }
-
-      .ln-btn-price span {
-        font-size: 6pt;
-        margin-bottom: 2px;
-      }
-      
-      .ln-btn-single {
-        width: 96%;
-      }
-    }
-  </style>
+        /* ==========================================================================
+           MEDIA QUERIES (Responsividade Nativa para Mobile)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            .grid-row {
+                display: block;
+                margin-bottom: 0;
+                border-spacing: 0;
+            }
+            .grid-cell {
+                display: block;
+                width: 100%;
+                padding-bottom: 24px;
+            }
+            .card {
+                min-height: auto;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="ln-store-container">
-    <h1 class="ln-header-title">Soluções Tecnológicas - Fernanda Ferreira</h1>
-    
-    <div class="ln-grid">
+    <div class="container">
+        <h1 class="header-title">Soluções Tecnológicas - Fernanda Ferreira</h1>
+        
+        <div class="grid-container">
+            
+            <div class="grid-row">
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3V21H21" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18 17V9" stroke="#4facfe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M13 17V5" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 17V11" stroke="#4facfe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Dashboards Interativos</h2>
+                        <div class="card-subtitle">(Looker Studio/Power BI)</div>
+                        <p class="card-description">Painéis de dados logísticos personalizados. Transforme CSV em insights organizados e dinâmicos.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box">
+                                <span class="price-label">Mensal</span>
+                                <span class="price-value">R$ 1.000,00</span>
+                            </a>
+                            <a href="#" class="price-box">
+                                <span class="price-label">Anual</span>
+                                <span class="price-value">R$ 10.000,00</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- CARD 1 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 17V11M11 17V7M15 17v-6M19 17V9"/></svg>
-        </div>
-        <div class="ln-card-title">Dashboards Interativos</div>
-        <div class="ln-card-subtitle">(Looker Studio/Power BI)</div>
-        <div class="ln-card-description">Painéis de dados logísticos personalizados. Transforme CSV em insights.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 1.000</a>
-          <a href="#" class="ln-btn-price"><span>Anual</span>R$ 10.000</a>
-        </div>
-      </div>
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#00f2fe" stroke-width="2"/>
+                                <path d="M3 9H21" stroke="#4facfe" stroke-width="2"/>
+                                <path d="M9 21V3" stroke="#4facfe" stroke-width="2"/>
+                                <path d="M14 13.5H16M14 16.5H16" stroke="#00f2fe" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Planilhas Inteligentes</h2>
+                        <div class="card-subtitle">(Google Sheets/Excel)</div>
+                        <p class="card-description">Automação avançada de processos e análises preditivas com IA Gemini integrada nativamente.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box">
+                                <span class="price-label">Mensal</span>
+                                <span class="price-value">R$ 300,00</span>
+                            </a>
+                            <a href="#" class="price-box">
+                                <span class="price-label">Anual</span>
+                                <span class="price-value">R$ 3.000,00</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <!-- CARD 2 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M3 15h18"/></svg>
-        </div>
-        <div class="ln-card-title">Planilhas Inteligentes</div>
-        <div class="ln-card-subtitle">(Google Sheets/Excel)</div>
-        <div class="ln-card-description">Automação e análises avançadas com IA Gemini integrada.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 300</a>
-          <a href="#" class="ln-btn-price"><span>Anual</span>R$ 3.000</a>
-        </div>
-      </div>
+            <div class="grid-row">
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="9" cy="10" r="1" fill="#4facfe"/>
+                                <circle cx="15" cy="10" r="1" fill="#4facfe"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Chatbot Personalizado</h2>
+                        <div class="card-subtitle">(ZAP + IA GEMINI)</div>
+                        <p class="card-description">Interface inteligente não-engessada, treinada estritamente com suas regras de negócio. Integração via API.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box">
+                                <span class="price-label">Setup</span>
+                                <span class="price-value">R$ 3.000,00</span>
+                            </a>
+                            <a href="#" class="price-box">
+                                <span class="price-label">Manutenção</span>
+                                <span class="price-value">R$ 300,00/mês</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- CARD 3 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 14h6"/></svg>
-        </div>
-        <div class="ln-card-title">Chatbot Personalizado</div>
-        <div class="ln-card-subtitle">(ZAP + IA GEMINI)</div>
-        <div class="ln-card-description">IA treinada com suas regras de negócio. Integração via API.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price"><span>Setup</span>R$ 3.000</a>
-          <a href="#" class="ln-btn-price"><span>Manut.</span>R$ 300</a>
-        </div>
-      </div>
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 14H14V18H10V14Z" stroke="#00f2fe" stroke-width="2"/>
+                                <path d="M3 5H7V9H3V5Z" stroke="#4facfe" stroke-width="2"/>
+                                <path d="M17 5H21V9H17V5Z" stroke="#4facfe" stroke-width="2"/>
+                                <path d="M5 9V16C5 16.5 5.5 17 6 17H10" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M19 9V16C19 16.5 18.5 17 18 17H14" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Integração de APIs e Sistemas</h2>
+                        <div class="card-subtitle">&nbsp;</div>
+                        <p class="card-description">Conecte de forma robusta sua IA, planilhas inteligentes ou dashboards ao ecossistema do WhatsApp e sistemas legados.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box single">
+                                <span class="price-label">Projeto</span>
+                                <span class="price-value">R$ 5.000,00</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <!-- CARD 4 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1M18 8h5v8h-5zM8 12h8"/></svg>
-        </div>
-        <div class="ln-card-title">Integração de APIs e Sistemas</div>
-        <div class="ln-card-subtitle">&nbsp;</div>
-        <div class="ln-card-description">Conecte sua IA, Sheets ou Dashboard ao WhatsApp e sistemas core.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price ln-btn-single"><span>Projeto</span>R$ 5.000</a>
-        </div>
-      </div>
+            <div class="grid-row">
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2V22M17 5H9.5C8.67392 5 7.88151 5.32924 7.29543 5.91532C6.70936 6.5014 6.38 7.29381 6.38 8.12C6.38 8.94619 6.70936 9.7386 7.29543 10.3247C7.88151 10.9108 8.67392 11.24 9.5 11.24H14.5C15.3261 11.24 16.1185 11.5692 16.7046 12.1553C17.2906 12.7414 17.62 13.5338 17.62 14.36C17.62 15.1862 17.2906 15.9786 16.7046 16.5647C16.1185 17.1508 15.3261 17.48 14.5 17.48H6" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Robôs Traders Automatizados</h2>
+                        <div class="card-subtitle">&nbsp;</div>
+                        <p class="card-description">Sistemas autônomos para execução de trading baseados em algoritmos matemáticos e análise técnica via IA.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box">
+                                <span class="price-label">Licença</span>
+                                <span class="price-value">R$ 2.000,00</span>
+                            </a>
+                            <a href="#" class="price-box">
+                                <span class="price-label">Mensalidade</span>
+                                <span class="price-value">R$ 200,00</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- CARD 5 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <div class="ln-card-title">Robôs Traders Automatizados</div>
-        <div class="ln-card-subtitle">&nbsp;</div>
-        <div class="ln-card-description">Sistemas automáticos para trading baseados em algoritmos robustos e IA.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price"><span>Licença</span>R$ 2.000</a>
-          <a href="#" class="ln-btn-price"><span>Mensal</span>R$ 200</a>
-        </div>
-      </div>
+                <div class="grid-cell">
+                    <div class="card">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="3" width="20" height="14" rx="2" stroke="#00f2fe" stroke-width="2"/>
+                                <path d="M2 7H22" stroke="#4facfe" stroke-width="2"/>
+                                <path d="M6 17H18" stroke="#00f2fe" stroke-width="2"/>
+                                <path d="M10 11H14" stroke="#4facfe" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">Criação de Sites & LP</h2>
+                        <div class="card-subtitle">(WordPress/Blogger)</div>
+                        <p class="card-description">Desenvolvimento de presença online corporativa de alta performance, totalmente otimizada para SEO Técnico.</p>
+                        <div class="pricing-container">
+                            <a href="#" class="price-box single">
+                                <span class="price-label">Projeto</span>
+                                <span class="price-value">R$ 4.000,00</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <!-- CARD 6 -->
-      <div class="ln-card">
-        <div class="ln-icon-box">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
         </div>
-        <div class="ln-card-title">Criação de Sites & Landing Pages</div>
-        <div class="ln-card-subtitle">(WordPress/Blogger)</div>
-        <div class="ln-card-description">Presença online profissional, com código limpo e otimizada para SEO.</div>
-        <div class="ln-price-container">
-          <a href="#" class="ln-btn-price ln-btn-single"><span>Projeto</span>R$ 4.000</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 
 </body>
-          </html>
+</html>
