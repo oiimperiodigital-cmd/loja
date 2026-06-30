@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas e Dashboards - Fernanda Ferreira</title>
+    <style>
+        /* ==========================================================================
+           RESET & VARIÁVEIS GLOBAIS (Padronização e Blindagem de Infraestrutura)
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #03131e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: #333333;
+            line-height: 1.5;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           GRID RESPONSIVO (Layout Adaptativo 2 Colunas)
+           ========================================================================== */
+        .grid-container {
+            display: block;
+            margin-bottom: 40px;
+        }
+
+        .grid-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 24px;
+            margin-bottom: -24px;
+        }
+
+        .grid-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding-bottom: 24px;
+        }
+
+        /* ==========================================================================
+           ESTILIZAÇÃO DOS CARDS (Padrão Identidade Visual Premium)
+           ========================================================================== */
+        .card-sistema {
+            display: block;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px 24px;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-sistema:hover, .card-sistema:active {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2);
+        }
+
+        .icon-container {
+            margin-bottom: 20px;
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-svg {
+            height: 100%;
+            max-width: 56px;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0;
+        }
+
+        /* ==========================================================================
+           BOTÃO CORPORATIVO HIGH-TICKET (Preto Absoluto / Conversão)
+           ========================================================================== */
+        .action-container {
+            text-align: center;
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        .btn-loja-virtual {
+            display: inline-block;
+            width: 100%;
+            max-width: 340px;
+            padding: 18px 32px;
+            background-color: #000000;
+            color: #ffffff !important;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 2px solid #000000;
+            border-radius: 50px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-loja-virtual:hover, .btn-loja-virtual:active {
+            background-color: #1a1a1a;
+            border-color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES (Responsividade Mobile Nativa)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+            .grid-row {
+                display: block;
+                margin-bottom: 0;
+                border-spacing: 0;
+            }
+            .grid-cell {
+                display: block;
+                width: 100%;
+                padding-bottom: 20px;
+            }
+            .btn-loja-virtual {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="grid-container">
+            
+            <div class="grid-row">
+                <div class="grid-cell">
+                    <a href="https://imperiodigitallabs.blogspot.com/2026/06/dashboards-logistica.html" class="card-sistema">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 18V6H4V18H14Z" stroke="#00f2fe" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M14 9H20L22 13V18H14V9Z" stroke="#4facfe" stroke-width="2" stroke-linejoin="round"/>
+                                <circle cx="7.5" cy="18.5" r="2.5" stroke="#00f2fe" stroke-width="2"/>
+                                <circle cx="17.5" cy="18.5" r="2.5" stroke="#4facfe" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">LOGÍSTICA</h2>
+                    </a>
+                </div>
+
+                <div class="grid-cell">
+                    <a href="https://imperiodigitallabs.blogspot.com/2026/06/dashboards-ecommerce.html?m=1" class="card-sistema">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="9" cy="21" r="1" stroke="#00f2fe" stroke-width="2"/>
+                                <circle cx="20" cy="21" r="1" stroke="#00f2fe" stroke-width="2"/>
+                                <path d="M1 1H4L6.68 14.39C6.77144 14.8508 7.02141 15.2622 7.38391 15.5473C7.7464 15.8324 8.19652 15.9733 8.65 15.97H19.42C19.8735 15.9733 20.3236 15.8324 20.6861 15.5473C21.0486 15.2622 21.2986 14.8508 21.39 14.39L23 6H6" stroke="#4facfe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">E-COMMERCE</h2>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid-row">
+                <div class="grid-cell">
+                    <a href="https://imperiodigitallabs.blogspot.com/2026/06/dashboards-gestao-de-estoque-inteligente.html" class="card-sistema">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 10H3M21 6H3M21 14H3M21 18H3" stroke="#00f2fe" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M7 6V18M17 6V18" stroke="#4facfe" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">ESTOQUE</h2>
+                    </a>
+                </div>
+
+                <div class="grid-cell">
+                    <a href="https://imperiodigitallabs.blogspot.com/2026/06/dashboards-jurimetria.html" class="card-sistema">
+                        <div class="icon-container">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3V21M3 7L12 4L21 7M3 7L5 15H10L12 21M21 7L19 15H14L12 21" stroke="#00f2fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="card-title">JURIMETRIA DE RISCO</h2>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="action-container">
+            <a href="https://analistafernandaferreira.blogspot.com/" class="btn-loja-virtual">
+                ACESSAR MINHA LOJA VIRTUAL
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
